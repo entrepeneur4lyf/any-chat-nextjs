@@ -18,7 +18,7 @@ const Logo = () => {
           className="flex items-center justify-center"
         >
         <h1 className={cn("text-2xl font-bold", font.className)}>
-            My AI
+            Any Chat
         </h1>
         </AspectRatio>
       </div>
