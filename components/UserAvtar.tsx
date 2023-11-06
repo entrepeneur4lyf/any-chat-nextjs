@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface UserAvtarProps {
-  name: string;
-  image: string;
+  name?: string | null;
+  image?: string | null;
   className?: string;
 }
 
@@ -15,7 +15,7 @@ const UserAvtar: React.FC<UserAvtarProps> = ({ image, name, className }) => {
       {image && (
         <AvatarImage
           src={image}
-          alt={name}
+          alt={name || "User Avatar"}
           width={40}
           height={40}
           className="rounded-full"
