@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ClientProvider from "@/components/providers/ClientProvider";
+import FirebaseAuthProvider from "@/components/providers/FirebaseAuthProvider";
 
 export const metadata: Metadata = {
   title: "Any Chat",
@@ -19,15 +20,17 @@ export default function RootLayout({
     <ClientProvider>
       <html lang="en">
         <body className="flex flex-col min-h-screen">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            storageKey="any-chat-theme"
-          >
-            <Header />
-            {children}
-          </ThemeProvider>
+          <FirebaseAuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              storageKey="any-chat-theme"
+            >
+              <Header />
+              {children}
+            </ThemeProvider>
+          </FirebaseAuthProvider>
         </body>
       </html>
     </ClientProvider>
