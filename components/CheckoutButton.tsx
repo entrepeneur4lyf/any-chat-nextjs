@@ -2,6 +2,7 @@
 
 import { db } from "@/firebase";
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 
@@ -25,6 +26,7 @@ const CheckoutButton = () => {
     // ... strpe extension on firebase will create a checkout session
     return onSnapshot(docReg, (snap) => {
       const data = snap.data();
+
       const url = data?.url;
       const error = data?.error;
 
@@ -48,9 +50,9 @@ const CheckoutButton = () => {
     <div className="flex flex-col space-y-2">
       <button
         onClick={() => createCheckoutSession()}
-        className="mt-8 block rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80"
+        className="flex justify-center items-center mt-8 rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80"
       >
-        {loading ? "Loading..." : "Sign Up"}
+        {loading ? <Loader2 className="animate-spin" /> : "Sign Up"}
       </button>
     </div>
   );

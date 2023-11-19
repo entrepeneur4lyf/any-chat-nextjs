@@ -27,9 +27,7 @@ const Register = async () => {
               fill="url(#redial-gradient)"
             />
             <defs>
-              <radialGradient
-                id="redial-gradient"
-              >
+              <radialGradient id="redial-gradient">
                 <stop offset="0%" stopColor="#7775D6" />
                 <stop offset="100%" stopColor="#E935C1" />
               </radialGradient>
@@ -37,7 +35,7 @@ const Register = async () => {
           </svg>
         </div>
       </div>
-      <PricingCard redirect={false}/>
+      <PricingCard redirect={false} />
     </div>
   );
 };
