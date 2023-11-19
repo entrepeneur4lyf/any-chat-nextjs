@@ -1,14 +1,23 @@
 "use client";
 
 import { db } from "@/firebase";
+import { useSubscriptionStore } from "@/store/store";
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
+import ManageAccountButton from "./ManageAccountButton";
 
 const CheckoutButton = () => {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
+
+  const subsctiption = useSubscriptionStore((state) => state.subscription);
+
+  const isLoadingSubscription = subsctiption === undefined;
+  const isSubscribed =
+    subsctiption?.status === "active" && subsctiption?.role === "pro";
+
   const createCheckoutSession = async () => {
     if (!session?.user.id) return;
 
@@ -48,12 +57,15 @@ const CheckoutButton = () => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <button
-        onClick={() => createCheckoutSession()}
-        className="flex justify-center items-center mt-8 rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80"
-      >
-        {loading ? <Loader2 className="animate-spin" /> : "Sign Up"}
-      </button>
+      <div className="flex justify-center items-center mt-8 rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80">
+        {isSubscribed ? (
+          <ManageAccountButton />
+        ) : isLoadingSubscription || loading ? (
+          <Loader2 className="animate-spin" />
+        ) : (
+          <button onClick={() => createCheckoutSession()}>Sign Up</button>
+        )}
+      </div>
     </div>
   );
 };

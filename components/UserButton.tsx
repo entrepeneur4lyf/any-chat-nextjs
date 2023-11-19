@@ -16,6 +16,7 @@ import { Button } from "./ui/button";
 import { signIn, signOut } from "next-auth/react";
 import { useSubscriptionStore } from "@/store/store";
 import { Loader2, StarIcon } from "lucide-react";
+import ManageAccountButton from "./ManageAccountButton";
 
 interface UserButtonProps {
   session: Session | null;
@@ -54,7 +55,9 @@ const UserButton: React.FC<UserButtonProps> = ({ session }) => {
                   <span className="text-green-500">Pro </span> Member
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Manage</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <ManageAccountButton />
+                </DropdownMenuItem>
               </>
             )}
 
