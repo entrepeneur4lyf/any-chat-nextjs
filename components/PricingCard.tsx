@@ -25,7 +25,7 @@ const tiels = [
   },
   {
     name: "Pro",
-    id: "si_test",
+    id: "pro",
     href: "#",
     priceMonthly: "$10",
     description: "Unlock all features and start chatting with anyone.",
