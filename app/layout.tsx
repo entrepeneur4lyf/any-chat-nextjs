@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import ClientProvider from "@/components/providers/ClientProvider";
 import FirebaseAuthProvider from "@/components/providers/FirebaseAuthProvider";
 import SubscriptionProvider from "@/components/providers/SubsriptionProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Any Chat",
@@ -31,6 +32,7 @@ export default function RootLayout({
               >
                 <Header />
                 {children}
+                <Toaster />
               </ThemeProvider>
             </SubscriptionProvider>
           </FirebaseAuthProvider>
