@@ -1,14 +1,22 @@
-import React from 'react'
+import ChatInput from "@/components/ChatInput";
+import React from "react";
 
-const ChatPage = () => {
-  return (
-    <>
-        {/* Admin Controls */}
-        {/* Chat Members Badge */}
-        {/* Chat Messages */}
-        {/* Chat Input */}
-    </>
-  )
+interface ChatPageProps {
+  params: {
+    chatId: string;
+  };
 }
 
-export default ChatPage
+const ChatPage: React.FC<ChatPageProps> = ({ params: { chatId } }) => {
+  return (
+    <>
+      {/* Admin Controls */}
+      {/* Chat Members Badge */}
+      {/* Chat Messages */}
+      {/* Chat Input */}
+      <ChatInput chatId={chatId} />
+    </>
+  );
+};
+
+export default ChatPage;

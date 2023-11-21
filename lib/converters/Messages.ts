@@ -20,7 +20,7 @@ export interface User {
 }
 
 export interface Message {
-  id: string;
+  id?: string;
   input: string;
   timestamp: Date;
   user: User;
