@@ -6,6 +6,7 @@ import { Skeleton } from "./ui/skeleton";
 import { useRouter } from "next/navigation";
 import UserAvtar from "./UserAvtar";
 import { useSession } from "next-auth/react";
+import { useLanguageStore } from "@/store/store";
 
 interface ChatListRowProps {
   chatId: string;
@@ -17,11 +18,13 @@ const ChatListRow: React.FC<ChatListRowProps> = ({ chatId }) => {
 
   const [messages, loading, error] = useCollectionData<Message>(
     limitedMessagesRef(chatId, 25)
-  );  
+  );
 
   const prettyUUID = (n = 4) => {
     return chatId.substring(0, n);
   };
+
+  const language = useLanguageStore((state) => state.language);
 
   const row = (message?: Message) => {
     return (
@@ -45,8 +48,8 @@ const ChatListRow: React.FC<ChatListRowProps> = ({ chatId }) => {
           </p>
 
           <p className="text-gray-400 line-clamp-1">
-          {message?.translated?.en || "Get the conversation started!"}
-        </p>
+            {message?.translated?.[language] || "Get the conversation started!"}
+          </p>
         </div>
 
         <div className="text-xs text-gray-400 text-right">
