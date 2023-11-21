@@ -1,3 +1,4 @@
+import ChatList from "@/components/ChatList";
 import React from "react";
 
 interface ChatPageProps {
@@ -11,11 +12,13 @@ const ChatPage: React.FC<ChatPageProps> = ({
   params,
   searchParams: { error },
 }) => {
-  return <div>
-    {/* Chat Permission Chat */}
+  return (
+    <div>
+      {/* Chat Permission Chat */}
 
-    {/* ChatList */}
-  </div>;
+      <ChatList />
+    </div>
+  );
 };
 
 export default ChatPage;
