@@ -1,4 +1,5 @@
 import { authOptions } from "@/auth";
+import AdminControls from "@/components/AdminControls";
 import ChatInput from "@/components/ChatInput";
 import ChatMemberBadge from "@/components/ChatMemberBadge";
 import ChatMessages from "@/components/ChatMessages";
@@ -23,6 +24,7 @@ const ChatPage: React.FC<ChatPageProps> = async ({ params: { chatId } }) => {
   return (
     <>
       {/* Admin Controls */}
+      <AdminControls chatId={chatId} />
       {/* Chat Members Badge */}
       <ChatMemberBadge chatId={chatId}/>
       {/* Chat Messages */}
