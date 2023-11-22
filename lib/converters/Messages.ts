@@ -57,7 +57,10 @@ export const messagesRef = (chatId: string) =>
   collection(db, "chats", chatId, "messages").withConverter(messageConverter);
 
 export const limitedMessagesRef = (chatId: string, limitTo: number = 25) =>
-  query(messagesRef(chatId), limit(limitTo)).withConverter(messageConverter);
+  query(messagesRef(chatId), limit(limitTo));
 
-export const orderedMessagesRef = (chatId: string) =>
+export const sortedMessagesRef = (chatId: string) =>
+  query(messagesRef(chatId), orderBy("timestamp", "asc"));
+
+export const limitedSortedMessagesRef = (chatId: string) =>
   query(query(messagesRef(chatId), limit(1)), orderBy("timestamp", "desc"));
