@@ -1,5 +1,5 @@
 import { ChatMembers } from "@/lib/converters/ChatMember";
-import { Message, limitedMessagesRef } from "@/lib/converters/Messages";
+import { Message, limitedMessagesRef, limitedSortedMessagesRef } from "@/lib/converters/Messages";
 import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Skeleton } from "./ui/skeleton";
@@ -17,7 +17,7 @@ const ChatListRow: React.FC<ChatListRowProps> = ({ chatId }) => {
   const { data: session } = useSession();
 
   const [messages, loading, error] = useCollectionData<Message>(
-    limitedMessagesRef(chatId, 25)
+    limitedSortedMessagesRef(chatId)
   );
 
   const prettyUUID = (n = 4) => {
