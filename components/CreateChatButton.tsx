@@ -8,8 +8,12 @@ import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import { useSubscriptionStore } from "@/store/store";
 import { v4 as uuid4 } from "uuid";
-import { serverTimestamp, setDoc } from "firebase/firestore";
-import { addChatRef } from "@/lib/converters/ChatMember";
+import { getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  addChatRef,
+  chatMembersCollectionGroupRef,
+} from "@/lib/converters/ChatMember";
+import { ToastAction } from "./ui/toast";
 
 interface CreateChatButtonProps {
   isLarge?: boolean;
@@ -34,6 +38,28 @@ export const CreateChatButton: React.FC<CreateChatButtonProps> = ({
       duration: 5000,
     });
 
+    const noOfchats = (
+      await getDocs(chatMembersCollectionGroupRef(session.user.id))
+    ).docs.map((doc) => doc.data()).length;
+
+    const isPro =
+      subscription?.role === "pro" || subscription?.status === "active";
+
+    if (!isPro && noOfchats >= 3) {
+      toast({
+        title: "You have reached the maximum number of chats!",
+        description: "Please upgrade to pro to create more chats",
+        action: (
+          <ToastAction
+            altText="Upgrade"
+            onClick={() => router.push("/register")}
+          >
+            Upgrade to Pro
+          </ToastAction>
+        ),
+      });
+      return;
+    }
     const chatId = uuid4();
 
     await setDoc(addChatRef(chatId, session.user.id), {
