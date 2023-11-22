@@ -1,4 +1,5 @@
 import ChatList from "@/components/ChatList";
+import ChatPermissionError from "@/components/ChatPermissionError";
 import React from "react";
 
 interface ChatPageProps {
@@ -14,8 +15,13 @@ const ChatPage: React.FC<ChatPageProps> = ({
 }) => {
   return (
     <div>
-      {/* Chat Permission Chat */}
-
+      {
+        error === "permission" && (
+          <div className="m-2">
+            <ChatPermissionError />
+          </div>
+        )
+      }
       <ChatList />
     </div>
   );
