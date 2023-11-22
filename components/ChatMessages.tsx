@@ -50,7 +50,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
             <div
               className={`flex flex-col relative space-y-2 p-4 w-fit line-clamp-1 mx-2 rounded-lg ${
                 isSender
-                  ? "ml-auto bg-violet-600 text-white rounded-none"
+                  ? "ml-auto bg-violet-600 text-white rounded-xl"
                   : "bg-gray-100 dark:text-gray-100 dark:bg-slate-700 rounded-bl-none"
               }`}
             >
