@@ -53,11 +53,11 @@ const ChatListRow: React.FC<ChatListRowProps> = ({ chatId }) => {
         </div>
 
         <div className="text-xs text-gray-400 text-right">
-          <p className="mb-auto">
-            {message
-              ? new Date(message.timestamp).toLocaleTimeString()
-              : "No messages yet"}
-          </p>
+          {/* <p className="mb-auto">
+          {message
+            ? new Date(message.timestamp)?.toLocaleTimeString()
+            : "No messages yet"}
+          </p> */}
           <p className="">chat #{prettyUUID()}</p>
         </div>
       </div>
