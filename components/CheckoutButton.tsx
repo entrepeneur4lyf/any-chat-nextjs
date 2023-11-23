@@ -27,7 +27,7 @@ const CheckoutButton = () => {
     const docReg = await addDoc(
       collection(db, "customers", session?.user.id, "checkout_sessions"),
       {
-        price: "price_1ODtu3SASZjM18yWaFqefhNT",
+        price: "price_1OFVcISASZjM18yWOSsKypR0",
         success_url: window.location.origin,
         cancel_url: window.location.origin,
       }

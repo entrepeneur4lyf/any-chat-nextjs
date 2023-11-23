@@ -27,7 +27,7 @@ const tiels = [
     name: "Pro",
     id: "pro",
     href: "#",
-    priceMonthly: "₹200",
+    priceMonthly: "₹59",
     description: "Unlock all features and start chatting with anyone.",
     features: [
       "Unlimited Messages in Chats",
