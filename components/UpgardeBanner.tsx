@@ -11,7 +11,7 @@ export const UpgradeBanner = () => {
 
   const router = useRouter();
 
-  if (!subsctiption || isPro) return null;
+  if (!subsctiption || !isPro) return null;
 
   return (
     <Button
